@@ -1,9 +1,6 @@
 package com.korit12.cardatabase.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.DataAmount;
 import lombok.*;
 
@@ -31,5 +28,8 @@ public class Car {
         this.registrationNumber = registrationNumber;
         this.modelYear = modelYear;
         this.price = price;
+
+       // @NonNull이 없으니까 얘는 옵셔널이라고 봐야겠네요.
+
     }
 }

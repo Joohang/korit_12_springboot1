@@ -11,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.Logger;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class CardatabaseApplication implements CommandLineRunner {
@@ -22,15 +24,23 @@ public class CardatabaseApplication implements CommandLineRunner {
 	}
 
 	// field 선언
-	private final CarRepository repository;
+	private final CarRepository carRepository;
+	private final OwnerRepository ownerRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-		repository.save(new Car("현대","소나타","검정","123가4567",2026,30000000));
-		repository.save(new Car("기아","k9","흰색","163가4547",2025,20000000));
-		repository.save(new Car("람보르기니","소나타","검정","173가3567",2010,130000000));
+		// Owner 인스턴스 생성
+		Owner owner1 = new Owner("김", "일");
+		Owner owner2 = new Owner("Jone", "Doe");
+		// 근데 이건 Owner 인스턴스를 생성한거지 DB에 저장한게 아닙니다.
+		// owner 테이블에 저장하는 코드
+		ownerRepository.saveAll(Arrays.asList(owner1, owner2));
+
+		carRepository.save(new Car("현대","소나타","검정","123가4567",2026,30000000));
+		carRepository.save(new Car("기아","k9","흰색","163가4547",2025,20000000));
+		carRepository.save(new Car("람보르기니","소나타","검정","173가3567",2010,130000000));
 	}
 
-	private final OwnerRepository repository1;
+
 
 }

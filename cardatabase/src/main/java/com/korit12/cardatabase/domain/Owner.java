@@ -1,10 +1,9 @@
 package com.korit12.cardatabase.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -19,4 +18,8 @@ public class Owner {
     private String firstName;
     @Getter @Setter @NonNull
     private String lastName;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @Getter @Setter
+    private List<Car> cars;
 }

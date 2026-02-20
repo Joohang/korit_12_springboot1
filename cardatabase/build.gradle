@@ -32,6 +32,8 @@ dependencies {
 	// lombok 의존성 주입
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	// MariaDB 이식 관련
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 }
 
 tasks.named('test') {
