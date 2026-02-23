@@ -1,12 +1,14 @@
 package com.korit12.cardatabase.domain;
 
 import jakarta.persistence.*;
+
+
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Data
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Owner {
@@ -14,6 +16,7 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     private Long ownerId;
+
     @Getter @Setter @NonNull
     private String firstName;
     @Getter @Setter @NonNull

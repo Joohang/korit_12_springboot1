@@ -5,31 +5,30 @@ import jdk.jfr.DataAmount;
 import lombok.*;
 
 @Entity
-// Lombok을 의존성 주입하고, Car 클래스를 롬복 적용 버전으로 다 수정하시오
-// 이후 동일하게 localhost:8080/h2-console을 통해서 접속에 성공하시오.
 @Data
 @NoArgsConstructor
-// AllArgsConstructor 는 추후에 충돌및 에러 가능성 기본생성자만 생성후
-// field에서 @이용해 지정하는 방식이 좋다.
-
+@RequiredArgsConstructor
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NonNull
-    private String brand, model, color, registrationNumber;
+    private String brand;
     @NonNull
-    private int modelYear, price;
+    private String model;
+    @NonNull
+    private String color;
+    @NonNull
+    private String registrationNumber;
+    @NonNull
+    private int modelYear;
+    @NonNull
+    private int price;
 
-    public Car(@NonNull String brand, @NonNull String model, @NonNull String color, @NonNull String registrationNumber, @NonNull int modelYear, @NonNull int price) {
-        this.brand = brand;
-        this.model = model;
-        this.color = color;
-        this.registrationNumber = registrationNumber;
-        this.modelYear = modelYear;
-        this.price = price;
+    @ManyToOne
+    @JoinColumn(name = "owner")
+    @NonNull
+    private Owner owner;            // @NonNull이 없으니까 얘는 옵셔널이라고 봐야겠네요.
 
-       // @NonNull이 없으니까 얘는 옵셔널이라고 봐야겠네요.
-
-    }
 }

@@ -27,6 +27,7 @@ public class CardatabaseApplication implements CommandLineRunner {
 	private final CarRepository carRepository;
 	private final OwnerRepository ownerRepository;
 
+
 	@Override
 	public void run(String... args) throws Exception {
 		// Owner 인스턴스 생성
@@ -36,11 +37,8 @@ public class CardatabaseApplication implements CommandLineRunner {
 		// owner 테이블에 저장하는 코드
 		ownerRepository.saveAll(Arrays.asList(owner1, owner2));
 
-		carRepository.save(new Car("현대","소나타","검정","123가4567",2026,30000000));
-		carRepository.save(new Car("기아","k9","흰색","163가4547",2025,20000000));
-		carRepository.save(new Car("람보르기니","소나타","검정","173가3567",2010,130000000));
+		carRepository.save(new Car("현대", "소나타", "검정", "123가4567", 2026, 30000000, owner1));
+		carRepository.save(new Car("기아", "K9", "흰색", "987나5432", 2025, 20000000, owner2));
+		carRepository.save(new Car("람보르기니", "쿤타치", "빨강", "159다7532", 2010, 130000000, owner2));
 	}
-
-
-
 }
