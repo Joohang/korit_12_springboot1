@@ -54,8 +54,14 @@ public class SecurityConfig {
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf((csrf -> csrf.disable()))
+        // 로그인 구현 전
+//        http.csrf(csrf->csrf.disable())
+//                .cors(withDefaults())
+//                .authorizeHttpRequests(authorizeRequests->
+//                        authorizeRequests.anyRequest().permitAll());
+
+        // 로구인 구현 후
+        http.csrf((csrf -> csrf.disable()))
                 .cors(withDefaults())
                 .sessionManagement(sessionManagement
                         -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -64,6 +70,7 @@ public class SecurityConfig {
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(exceptionHandling
                         -> exceptionHandling.authenticationEntryPoint(exceptionHandler));
+
 
         return http.build();
     }
